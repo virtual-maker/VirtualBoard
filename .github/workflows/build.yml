@@ -1,0 +1,85 @@
+name: Build All
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  # Path to the solution file relative to the root of the project.
+  SOLUTION_FILE_PATH: VirtualBoard.sln
+
+  # Configuration type to build.
+  # You can convert this to a build matrix if you need coverage of multiple configuration types.
+  # https://docs.github.com/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
+  BUILD_CONFIGURATION: Release|Win32
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Restore NuGet packages
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      run: nuget restore ${{env.SOLUTION_FILE_PATH}}
+      
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.7
+      with:
+        versionSpec: '5.x'
+      
+    - name: Build solution
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      shell: pwsh
+      run: |
+        # Install PS module
+        Set-PSRepository PSGallery -InstallationPolicy Trusted
+        Install-Module -Name Invoke-MsBuild -ErrorAction Stop
+        # Build solution
+        Invoke-MsBuild -Path .\VirtualBoard.sln -MsBuildParameters "/target:Build /property:Configuration=Release;Platform=Win32"
+
+    - name: Apply version to NuGet and VSIX configuration
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      shell: pwsh
+      run: |
+        # Apply version to NuGet and VSIX configuration
+        $GitVersion = dotnet-gitversion | ConvertFrom-Json
+        $GitVersion.NuGetVersion
+        $GitVersion.MajorMinorPatch
+        & ".\BuildScripts\update-version.ps1" $GitVersion.NuGetVersion $GitVersion.MajorMinorPatch
+
+    - name: Create NuGet package
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      shell: pwsh
+      run: |
+        # Create NuGet package
+        NuGet pack ".\BuildNuget\VirtualBoard.nuspec" -OutputDirectory ".\VirtualBoardExtension\Packages"
+
+    - name: Build VSIX extension
+      working-directory: ${{env.GITHUB_WORKSPACE}}
+      shell: pwsh
+      run: |
+        # Build VSIX extension
+        Invoke-MsBuild -Path .\VirtualBoardExtension.sln -MsBuildParameters "/target:Build /property:Configuration=Release"
+        # -LogVerbosityLevel minimal -ShowBuildOutputInNewWindow -PromptForInputBeforeClosing
+
+    - name: Upload NuGet package
+      uses: actions/upload-artifact@v3
+      with:
+        name: NuGet package
+        path: ${{github.workspace}}/VirtualBoardExtension/Packages
+
+    - name: Upload VSIX extension
+      uses: actions/upload-artifact@v3
+      with:
+        name: VSIX extension
+        path: ${{github.workspace}}/VirtualBoardExtension/bin/Release/*.vsix

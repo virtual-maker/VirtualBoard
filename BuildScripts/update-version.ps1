@@ -24,7 +24,7 @@ if ($psISE) {
 
 # Import functions to get and set XML node attribute and inner text
 $ModulePath = Join-Path -Path $RootPath -ChildPath "get-set-xml.psm1"
-Import-Module $ModulePath
+Import-Module $ModulePath -Verbose:$false
 
 # Update version number in NuGet package specification (.nuspec)
 $FullPath = Join-Path -Path (get-item $RootPath).Parent.FullName -ChildPath "BuildNuget"
