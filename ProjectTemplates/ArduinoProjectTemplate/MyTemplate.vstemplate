@@ -1,0 +1,39 @@
+<VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>ArduinoProjectTemplate</Name>
+    <Description>Arduino VirtualMake project template.</Description>
+    <ProjectType>VC</ProjectType>
+    <ProjectSubType>
+    </ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>false</CreateNewFolder>
+    <DefaultName>ArduinoProject</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <CreateInPlace>true</CreateInPlace>
+    <LanguageTag>C++</LanguageTag>
+    <PlatformTag>Windows</PlatformTag>
+    <ProjectTypeTag>Console</ProjectTypeTag>
+    <ProjectTypeTag>Arduino</ProjectTypeTag>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="ArduinoProject.vcxproj" File="ArduinoProject.vcxproj" ReplaceParameters="true">
+      <ProjectItem ReplaceParameters="false" TargetFileName="MyLibraries.props">MyLibraries.props</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Application.cpp">Application.cpp</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$\$projectname$.ino">ArduinoProject.ino</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$\Sketch.h">Sketch.h</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.vcxproj.filters">ArduinoProject.vcxproj.filters</ProjectItem>
+    </Project>
+  </TemplateContent>
+  <WizardExtension>
+    <Assembly>NuGet.VisualStudio.Interop, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</Assembly>
+    <FullClassName>NuGet.VisualStudio.TemplateWizard</FullClassName>
+  </WizardExtension>
+  <WizardData>
+    <packages repository="extension" repositoryId="VirtualBoardExtension.fb9ce771-91a4-4fb4-bdad-6fb25808985d">
+      <package id="VirtualBoard" version="0.0.0" targetFramework="native" />
+    </packages>
+  </WizardData>
+</VSTemplate>

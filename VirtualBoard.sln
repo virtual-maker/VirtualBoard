@@ -1,0 +1,124 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualHardwareNet", "VirtualHardwareNet\VirtualHardwareNet.csproj", "{E4510538-EA86-4014-97E0-F3CB9B50C349}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VirtualHardwareWrapper", "VirtualHardwareWrapper\VirtualHardwareWrapper.vcxproj", "{C48151C7-7490-44B3-8BAC-AEC8E4A1894B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E4510538-EA86-4014-97E0-F3CB9B50C349} = {E4510538-EA86-4014-97E0-F3CB9B50C349}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualTwiServer", "VirtualTwiServer\VirtualTwiServer.csproj", "{D26E690B-8E53-4BE0-8673-6BEA61969DAC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MySerialPort", "MySerialPort\MySerialPort.vcxproj", "{E8B94DD2-A854-4BB8-A47F-DBB355C16F14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestVirtualHardwareNet", "TestVirtualHardwareNet\TestVirtualHardwareNet.csproj", "{574D84FC-F3F6-4B30-8991-EA80EDE5AC04}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{25C3E7EB-22AE-47AC-995F-1B9F5064A348}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		azure-pipelines.yml = azure-pipelines.yml
+		build.local.ps1 = build.local.ps1
+		build.nuget.local.ps1 = build.nuget.local.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Templates", "Project Templates", "{24B960D5-3D0A-4BB5-A20A-F226E2453D39}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ArduinoProjectTemplate", "ArduinoProjectTemplate", "{B527C965-C91A-47A8-AF04-2C74CC6C53E2}"
+	ProjectSection(SolutionItems) = preProject
+		ProjectTemplates\ArduinoProjectTemplate\Application.cpp = ProjectTemplates\ArduinoProjectTemplate\Application.cpp
+		ProjectTemplates\ArduinoProjectTemplate\ArduinoProject.ino = ProjectTemplates\ArduinoProjectTemplate\ArduinoProject.ino
+		ProjectTemplates\ArduinoProjectTemplate\ArduinoProject.vcxproj = ProjectTemplates\ArduinoProjectTemplate\ArduinoProject.vcxproj
+		ProjectTemplates\ArduinoProjectTemplate\ArduinoProject.vcxproj.filters = ProjectTemplates\ArduinoProjectTemplate\ArduinoProject.vcxproj.filters
+		ProjectTemplates\ArduinoProjectTemplate\MyLibraries.props = ProjectTemplates\ArduinoProjectTemplate\MyLibraries.props
+		ProjectTemplates\ArduinoProjectTemplate\MyTemplate.vstemplate = ProjectTemplates\ArduinoProjectTemplate\MyTemplate.vstemplate
+		ProjectTemplates\ArduinoProjectTemplate\Sketch.h = ProjectTemplates\ArduinoProjectTemplate\Sketch.h
+		ProjectTemplates\ArduinoProjectTemplate\__TemplateIcon.ico = ProjectTemplates\ArduinoProjectTemplate\__TemplateIcon.ico
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MySensorsProjectTemplate", "MySensorsProjectTemplate", "{EE2F6F12-A3E7-471F-8903-1CDDD74B68B8}"
+	ProjectSection(SolutionItems) = preProject
+		ProjectTemplates\MySensorsProjectTemplate\Application.cpp = ProjectTemplates\MySensorsProjectTemplate\Application.cpp
+		ProjectTemplates\MySensorsProjectTemplate\MyLibraries.props = ProjectTemplates\MySensorsProjectTemplate\MyLibraries.props
+		ProjectTemplates\MySensorsProjectTemplate\MySensorsProject.ino = ProjectTemplates\MySensorsProjectTemplate\MySensorsProject.ino
+		ProjectTemplates\MySensorsProjectTemplate\MySensorsProject.vcxproj = ProjectTemplates\MySensorsProjectTemplate\MySensorsProject.vcxproj
+		ProjectTemplates\MySensorsProjectTemplate\MySensorsProject.vcxproj.filters = ProjectTemplates\MySensorsProjectTemplate\MySensorsProject.vcxproj.filters
+		ProjectTemplates\MySensorsProjectTemplate\MyTemplate.vstemplate = ProjectTemplates\MySensorsProjectTemplate\MyTemplate.vstemplate
+		ProjectTemplates\MySensorsProjectTemplate\Sketch.h = ProjectTemplates\MySensorsProjectTemplate\Sketch.h
+		ProjectTemplates\MySensorsProjectTemplate\__TemplateIcon.ico = ProjectTemplates\MySensorsProjectTemplate\__TemplateIcon.ico
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NuGet Package", "NuGet Package", "{8C4FB5F6-4EF4-4EDB-AA88-769E014CCDBA}"
+	ProjectSection(SolutionItems) = preProject
+		BuildNuget\VirtualBoard.nuspec = BuildNuget\VirtualBoard.nuspec
+		BuildNuget\build\VirtualBoard.props = BuildNuget\build\VirtualBoard.props
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "VirtualBoard", "VirtualBoard", "{CEBAEA16-CF3F-41A5-8DA6-DF21E726A1F5}"
+	ProjectSection(SolutionItems) = preProject
+		VirtualBoard\VirtualBoard.h = VirtualBoard\VirtualBoard.h
+		VirtualBoard\VirtualBoardIncludes.h = VirtualBoard\VirtualBoardIncludes.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "variants", "variants", "{C81318E8-08ED-46C7-999D-2E04819C4C3E}"
+	ProjectSection(SolutionItems) = preProject
+		VirtualBoard\variants\pins_arduino.h = VirtualBoard\variants\pins_arduino.h
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Win32 = Debug|Win32
+		Release|Any CPU = Release|Any CPU
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E4510538-EA86-4014-97E0-F3CB9B50C349}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4510538-EA86-4014-97E0-F3CB9B50C349}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4510538-EA86-4014-97E0-F3CB9B50C349}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{E4510538-EA86-4014-97E0-F3CB9B50C349}.Debug|Win32.Build.0 = Debug|Any CPU
+		{E4510538-EA86-4014-97E0-F3CB9B50C349}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4510538-EA86-4014-97E0-F3CB9B50C349}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4510538-EA86-4014-97E0-F3CB9B50C349}.Release|Win32.ActiveCfg = Release|Any CPU
+		{E4510538-EA86-4014-97E0-F3CB9B50C349}.Release|Win32.Build.0 = Release|Any CPU
+		{C48151C7-7490-44B3-8BAC-AEC8E4A1894B}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{C48151C7-7490-44B3-8BAC-AEC8E4A1894B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C48151C7-7490-44B3-8BAC-AEC8E4A1894B}.Debug|Win32.Build.0 = Debug|Win32
+		{C48151C7-7490-44B3-8BAC-AEC8E4A1894B}.Release|Any CPU.ActiveCfg = Release|Win32
+		{C48151C7-7490-44B3-8BAC-AEC8E4A1894B}.Release|Win32.ActiveCfg = Release|Win32
+		{C48151C7-7490-44B3-8BAC-AEC8E4A1894B}.Release|Win32.Build.0 = Release|Win32
+		{D26E690B-8E53-4BE0-8673-6BEA61969DAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D26E690B-8E53-4BE0-8673-6BEA61969DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D26E690B-8E53-4BE0-8673-6BEA61969DAC}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{D26E690B-8E53-4BE0-8673-6BEA61969DAC}.Debug|Win32.Build.0 = Debug|Any CPU
+		{D26E690B-8E53-4BE0-8673-6BEA61969DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D26E690B-8E53-4BE0-8673-6BEA61969DAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D26E690B-8E53-4BE0-8673-6BEA61969DAC}.Release|Win32.ActiveCfg = Release|Any CPU
+		{D26E690B-8E53-4BE0-8673-6BEA61969DAC}.Release|Win32.Build.0 = Release|Any CPU
+		{E8B94DD2-A854-4BB8-A47F-DBB355C16F14}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{E8B94DD2-A854-4BB8-A47F-DBB355C16F14}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E8B94DD2-A854-4BB8-A47F-DBB355C16F14}.Debug|Win32.Build.0 = Debug|Win32
+		{E8B94DD2-A854-4BB8-A47F-DBB355C16F14}.Release|Any CPU.ActiveCfg = Release|Win32
+		{E8B94DD2-A854-4BB8-A47F-DBB355C16F14}.Release|Win32.ActiveCfg = Release|Win32
+		{574D84FC-F3F6-4B30-8991-EA80EDE5AC04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{574D84FC-F3F6-4B30-8991-EA80EDE5AC04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{574D84FC-F3F6-4B30-8991-EA80EDE5AC04}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{574D84FC-F3F6-4B30-8991-EA80EDE5AC04}.Debug|Win32.Build.0 = Debug|Any CPU
+		{574D84FC-F3F6-4B30-8991-EA80EDE5AC04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{574D84FC-F3F6-4B30-8991-EA80EDE5AC04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{574D84FC-F3F6-4B30-8991-EA80EDE5AC04}.Release|Win32.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B527C965-C91A-47A8-AF04-2C74CC6C53E2} = {24B960D5-3D0A-4BB5-A20A-F226E2453D39}
+		{EE2F6F12-A3E7-471F-8903-1CDDD74B68B8} = {24B960D5-3D0A-4BB5-A20A-F226E2453D39}
+		{C81318E8-08ED-46C7-999D-2E04819C4C3E} = {CEBAEA16-CF3F-41A5-8DA6-DF21E726A1F5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {743D7472-DCFF-4CFB-AB34-BFE728D32A95}
+	EndGlobalSection
+EndGlobal

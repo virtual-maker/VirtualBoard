@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>VirtualBoard</id>
+    <version>0.0.0</version>
+    <title>Virtual Arduino Core and Board</title>
+    <projectUrl>https://github.com/virtual-maker</projectUrl>
+    <authors>Immo Wache</authors>
+    <owners>Virtual-Maker Berlin</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Virtual Arduino Core Library for Windows and VC++</description>
+    <summary>Build, run and debug virtual Arduino sketches with VC++ and Visual Studio.</summary>
+    <copyright>Copyright VirtualMaker-Berlin 2022</copyright>
+    <tags>Arduino Uno Nano MKR ESP8266 ESP32 C++ Native IO-Warrior</tags>
+  </metadata>
+  <files>
+    <file src="build\**" target="build" />
+    <file src="..\lib\**" target="build\native\libs" />
+    <file src="..\inc\**" target="build\native\interface" />
+    <file src="..\VirtualBoard\**" target="build\native\source" />
+  </files>
+</package>

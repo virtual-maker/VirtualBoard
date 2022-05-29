@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" 
+    xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <OutDir>bin\$(Configuration)\</OutDir>
+        <ExtensionsToDeleteOnClean>*.dll;$(ExtensionsToDeleteOnClean)</ExtensionsToDeleteOnClean>
+        <IntDir>bin\$(Configuration)\</IntDir>
+    </PropertyGroup>
+    <ItemDefinitionGroup>
+        <ClCompile>
+            <AdditionalIncludeDirectories>
+              $(MSBuildThisFileDirectory)native\interface\;
+              $(MSBuildThisFileDirectory)native\source\;
+              $(MSBuildThisFileDirectory)native\source\cores\arduino;
+              $(MSBuildThisFileDirectory)native\source\libraries\Ethernet;
+              $(MSBuildThisFileDirectory)native\source\libraries\SoftwareSerial;
+              $(MSBuildThisFileDirectory)native\source\libraries\SPI;
+              $(MSBuildThisFileDirectory)native\source\libraries\WiFiNINA;
+              $(MSBuildThisFileDirectory)native\source\libraries\Wire;
+              %(AdditionalIncludeDirectories)
+            </AdditionalIncludeDirectories>
+            <ConformanceMode>false</ConformanceMode>
+            <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_WARNINGS;_CRT_OBSOLETE_NO_WARNINGS;__STDC_LIMIT_MACROS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+            <DisableSpecificWarnings>4996;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+        </ClCompile>
+        <Link>
+            <AdditionalLibraryDirectories>$(MSBuildThisFileDirectory)native\libs\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+            <AdditionalDependencies>VirtualHardwareWrapper.lib;%(AdditionalDependencies)</AdditionalDependencies>
+        </Link>
+        <PostBuildEvent>
+            <Message>Copy DLLs to Target Directory</Message>
+            <Command>XCOPY $(MSBuildThisFileDirectory)native\libs\*.dll "$(TargetDir)" /D /K /Y</Command>
+        </PostBuildEvent>
+    </ItemDefinitionGroup>
+</Project>
