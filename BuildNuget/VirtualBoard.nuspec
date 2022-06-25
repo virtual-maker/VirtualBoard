@@ -4,13 +4,13 @@
     <id>VirtualBoard</id>
     <version>0.0.0</version>
     <title>Virtual Arduino Core and Board</title>
-    <projectUrl>https://github.com/virtual-maker</projectUrl>
+    <projectUrl>https://github.com/virtual-maker/VirtualBoard</projectUrl>
     <authors>Immo Wache</authors>
-    <owners>Virtual-Maker Berlin</owners>
+    <owners>Virtual-Maker</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Virtual Arduino Core Library for Windows and VC++</description>
     <summary>Build, run and debug virtual Arduino sketches with VC++ and Visual Studio.</summary>
-    <copyright>Copyright VirtualMaker-Berlin 2022</copyright>
+    <copyright>Copyright Virtual-Maker 2022</copyright>
     <tags>Arduino Uno Nano MKR ESP8266 ESP32 C++ Native IO-Warrior</tags>
   </metadata>
   <files>
