@@ -6,8 +6,7 @@ Build and debug Arduino sketches with Visual C++ (MSVC) and Visual Studio 2022.
 
 ## Overview
 
-Use the Visual Studio integrated development environment (IDE) to develop, build, run and debug
-your Arduino sketches as an executable directly at your Windows computer. Use network and serial connections of your computer directly from your Arduino sketch. Connect to I/O, SPI and I2C pins via [IO-Warrior](https://www.codemercs.com/en/io) hardware, connected via USB.
+Use the Visual Studio integrated development environment (IDE) to develop, build, run and debug your Arduino sketches as an executable directly at your Windows computer. Use network and serial connections of your computer directly from your Arduino sketch. Connect to I/O, SPI and I2C pins via [IO-Warrior](https://www.codemercs.com/en/io) hardware, connected via USB.
 
 ## Advantages
 
@@ -29,17 +28,20 @@ your Arduino sketches as an executable directly at your Windows computer. Use ne
 
 ### Prerequisites
 
-To create VirtualBoard applications for your Arduino sketches you will need 
-[Visual Studio 2022](https://visualstudio.microsoft.com/vs/) with workload "Desktop development with C++" installed.  
+To create VirtualBoard applications for your Arduino sketches you will need [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) with workload "Desktop development with C++" installed.  
 ![VS2022 Installer C++ workload](./doc/images/01-vs2022-workload-cpp.png)
 
 ### Install Visual Studio extension
-1. Launch Visual Studio 2022, then click `Continue without code`. Click `Extensions -> Manage Extensions`
-   from the Menu Bar.
-   ![]()
-2. In the Extension Manager expand the **Online** node and search for `Arduino`, install the 
-   `VirtualBoard` extension or download it from the [Visual Studio Marketplace]().
-   ![]()
+1. Launch Visual Studio 2022, then click `Continue without code`. 
+   ![Select "Continue without code"](./doc/images/03-start-vs-without-code.png)
+   
+2. Click `Extensions -> Manage Extensions` from the Menu Bar.
+   ![Select "ManageExtensions" ](./doc/images/04-manage-extensions.png)
+   
+3. In the Extension Manager expand the **Online** node and search for `Arduino`, install the `VirtualBoardExtension` or download it from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=virtual-maker.virtualboardextension).
+   ![Download VirtualBoard extension](./doc/images/05-install-virtualboard-extension.png)
+   
+4. Close Visual Studio to actual start the installation of the extension. Then restart Visual Studio again.
 
 ### Create an Arduino sketch application from template
 ...
