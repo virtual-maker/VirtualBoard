@@ -19,9 +19,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{25C3E7EB-22AE-47AC-995F-1B9F5064A348}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		azure-pipelines.yml = azure-pipelines.yml
 		build.local.ps1 = build.local.ps1
 		build.nuget.local.ps1 = build.nuget.local.ps1
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project Templates", "Project Templates", "{24B960D5-3D0A-4BB5-A20A-F226E2453D39}"
