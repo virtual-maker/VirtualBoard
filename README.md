@@ -22,8 +22,8 @@ Use the Visual Studio integrated development environment (IDE) to develop, build
 ## Limitations
 
 - MSVC, used by Visual Studio differs in some C++ language features from GCC compiler, used by the Arduino IDE,
-- The Windows executable uses the 32bit features of your computer CPU which differs from e.g. from the 8bit Arduino Uno,
-- The Windows executable also uses huge memory resources of your computer, compared to the 2K RAM size of a Arduino Uno,
+- The Windows executable uses the 32bit features of your computer CPU which differs e.g. from the 8bit Arduino Uno,
+- The Windows executable also uses huge memory resources of your computer, compared to the 2K RAM size of an Arduino Uno,
 - Windows is not a real time OS, so no interrupts or time critical response time is supported.
 
 ## Getting Started
