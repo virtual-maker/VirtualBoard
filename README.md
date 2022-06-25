@@ -1,5 +1,7 @@
 # VirtualBoard Extension for Visual Studio
 
+![VirtualBoard Logo](./doc/images/Logo-VirtualBoard_128.png)
+
 Build and debug Arduino sketches with Visual C++ (MSVC) and Visual Studio 2022.
 
 ![VS2022 with VirualBoard in debug mode](./doc/images/02-vs2022-with-virtualboard.png)

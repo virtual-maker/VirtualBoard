@@ -8,6 +8,7 @@
 Use the Visual Studio IDE to develop, build, run and debug your Arduino sketches as an executable directly at your Windows computer. Use network and serial connections of your computer directly from your Arduino sketch. Connect to I/O, SPI and I2C pins via IO-Warrior hardware (https://www.codemercs.com/en/io), connected via USB.</Description>
         <MoreInfo>https://github.com/virtual-maker/VirtualBoard/</MoreInfo>
         <License>LICENSE.txt</License>
+        <Icon>Logo-VirtualBoard_128.png</Icon>
         <Tags>Arduino, C++, IO-Warrior</Tags>
     </Metadata>
     <Installation>
