@@ -2,6 +2,8 @@
 
 Build and debug Arduino sketches with Visual C++ (MSVC) and Visual Studio 2022.
 
+![VS2022 with VirualBoard in debug mode](./doc/images/02-vs2022-with-virtualboard.png)
+
 ## Overview
 
 Use the Visual Studio integrated development environment (IDE) to develop, build, run and debug
@@ -29,7 +31,7 @@ your Arduino sketches as an executable directly at your Windows computer. Use ne
 
 To create VirtualBoard applications for your Arduino sketches you will need 
 [Visual Studio 2022](https://visualstudio.microsoft.com/vs/) with workload "Desktop development with C++" installed.  
-![](./doc/images/01-vs2022-workload-cpp.png)
+![VS2022 Installer C++ workload](./doc/images/01-vs2022-workload-cpp.png)
 
 ### Install Visual Studio extension
 1. Launch Visual Studio 2022, then click `Continue without code`. Click `Extensions -> Manage Extensions`
