@@ -4,6 +4,12 @@
 
 Build and debug Arduino sketches with Visual C++ (MSVC) and Visual Studio 2022.
 
+> I can't promise that you will get your Arduino project  
+> running 5 times faster with this extension.  
+> But I am sure that you will have 5 times more fun with it.
+
+Immo Wache - Inventor of VirtualBoard
+
 ![VS2022 with VirualBoard in debug mode](./doc/images/02-vs2022-with-virtualboard.png)
 
 ## Overview
@@ -12,9 +18,9 @@ Use the Visual Studio integrated development environment (IDE) to develop, build
 
 ## Advantages
 
+- Make up use of the super fast MSVC compiler and comprehensive Visual Studio debug features to speed up your sketch code development,
 - Get a project template to obtain all required MSVC settings preconfigured for your sketch,
 - Use the Arduino compatible VirtualBoard NuGet package, which provides the standard Arduino functions and libraries for your Windows sketch executable,
-- Make up use of the super fast MSVC compiler and comprehensive Visual Studio debug features to speed up your sketch code development,
 - Keep your sketch folder compatible with Arduino IDE or Arduino CLI and upload your sketches to real Arduino compatible boards,
 - Add and use MSVC compatible Arduino libraries to your sketches or use special MSVC compatible library versions,
 - Connect your running sketch simulation at your Windows computer with real I/O, SPI and I2C pins via [IO-Warrior](https://www.codemercs.com/en/io) hardware.
@@ -46,7 +52,25 @@ To create VirtualBoard applications for your Arduino sketches you will need [Vis
 4. Close Visual Studio to actual start the installation of the extension. Then restart Visual Studio again.
 
 ### Create an Arduino sketch application from template
-...
+1. Launch Visual Studio 2022, then click `Create a new project` to start the project creation wizard.
+   ![Select "Create a new project"](./doc/images/06-vs-create-new-project.png)
+   
+2. In the "Create a new project" wizard step search for `Arduino` and select the `ArduinoProjectTemplate` by double click at template or press button `Next`.
+   ![Select "ArduinoProjectTemplate"](./doc/images/07-vs-select-arduino-project-template.png)
+
+3. In last wizard step "Configure your new project" enter your project name.
+   This will also be your Arduino sketch name and project folder name. Then press button `Create`.
+   ![Configure new project settings](./doc/images/08-vs-configure-project-settings.png)
+
+4. Now Visual Studio opens your new created VirtualBoard project for Arduino. In the solution explorer tree find your `sketch.h` and Arduino `*.ino` sketch file.
+   ![Your project in Visual Studio IDE](./doc/images/09-vs-ide-project-view.png)
+
+5. Also take a look at the `Application.cpp` file. This file is the main entry point of your Visual C++ project. All Arduino core libraries and your sketch file are included from here.
+   ![Project entry file Application.cpp](./doc/images/10-project-entry-file-application.png)
+
+6. Now you can start to write and debug your Arduino sketch code - Happy coding!
+
+
 
 ## Videos
 
