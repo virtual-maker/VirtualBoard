@@ -38,6 +38,19 @@
 #define DHCP_CHECK_REBIND_FAIL  (3)
 #define DHCP_CHECK_REBIND_OK    (4)
 
+enum EthernetLinkStatus {
+	Unknown,
+	LinkON,
+	LinkOFF
+};
+
+enum EthernetHardwareStatus {
+	EthernetNoHardware,
+	EthernetW5100,
+	EthernetW5200,
+	EthernetW5500
+};
+
 class EthernetClass {
 private:
   IPAddress _localIpAddress;
@@ -53,7 +66,10 @@ public:
   void begin(uint8_t *mac_address, IPAddress local_ip, IPAddress dns_server);
   void begin(uint8_t *mac_address, IPAddress local_ip, IPAddress dns_server, IPAddress gateway);
   void begin(uint8_t *mac_address, IPAddress local_ip, IPAddress dns_server, IPAddress gateway, IPAddress subnet);
+  static void init(uint8_t sspin = 10) {};
   int maintain();
+  static EthernetLinkStatus linkStatus() { return LinkON; };
+  static EthernetHardwareStatus hardwareStatus() { return EthernetW5500; };
 
   IPAddress localIP();
   IPAddress subnetMask();
