@@ -73,9 +73,8 @@ To create VirtualBoard applications for your Arduino sketches you will need [Vis
 
 
 ## Videos
-
-- Install VS2022 Community Edition and the VirtualBoard extension
-- Use the Arduino project template to create a new or already existing Arduino sketch
+- [VirtualBoard Installation](https://vimeo.com/727126315) - Install VS2022 Community Edition and the VirtualBoard extension
+- [VirtualBoard Sketch Creation](https://vimeo.com/727133698) - Use the Arduino project template to create a new or already existing Arduino sketch
 - Debug a VirtualBoard sketch with VS2022
 - Add additional Arduino libraries
 - Connect to real I/O, SPI and I2C pins via IO-Warrior hardware
