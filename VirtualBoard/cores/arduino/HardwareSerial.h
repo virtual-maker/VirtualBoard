@@ -30,7 +30,7 @@
 #include <inttypes.h>
 
 #include "Stream.h"
-#include <SerialPortWrapper.h>
+#include "serial/serial.h"
 
 // Define config for Serial.begin(baud, config);
 #define SERIAL_5N1 0x00
@@ -61,7 +61,7 @@
 class HardwareSerial : public Stream
 {
   private:
-    SerialPortWrapper _serialWrapper;
+    serial::SerialClass _serialInternal;
 
   protected:
     const char *_deviceName;
