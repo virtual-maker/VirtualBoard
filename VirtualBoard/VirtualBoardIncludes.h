@@ -51,6 +51,8 @@
 #include "cores/arduino/Stream.cpp"
 #include "cores/arduino/IPAddress.cpp"
 #include "cores/arduino/HardwareSerial.cpp"
+#include "cores/arduino/serial/serial.cc"
+#include "cores/arduino/serial/win.cc"
 #include "cores/arduino/StreamString.cpp"
 
 #endif

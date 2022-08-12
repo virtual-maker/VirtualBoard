@@ -53,24 +53,28 @@ HardwareSerial::HardwareSerial(const char *deviceName)
 void HardwareSerial::begin(unsigned long baud, byte config)
 {
   _written = false;
-  _serialWrapper.begin(_deviceName, baud, config);
+
+  _serialInternal.setPort(_deviceName);
+  _serialInternal.setBaudrate(baud);
+  _serialInternal.open();
 }
 
 void HardwareSerial::end()
 {
   // wait for transmission of outgoing data
-  flush();
-  _serialWrapper.end();
+  _serialInternal.flush();
+  _serialInternal.close();
 }
 
 int HardwareSerial::available(void)
 {
-  return _serialWrapper.available();
+  return _serialInternal.available();
 }
 
 int HardwareSerial::peek(void)
 {
-  return _serialWrapper.peek();
+  // ToDo: return _serialInternal.peek();
+  return -1;
 }
 
 int HardwareSerial::read(void)
@@ -87,12 +91,12 @@ int HardwareSerial::read(void)
 
 int HardwareSerial::read(uint8_t *buf, size_t bytes)
 {
-  return _serialWrapper.read(buf, bytes);
+    return _serialInternal.read(buf, bytes);
 }
 
 int HardwareSerial::availableForWrite(void)
 {
-  // ToDo: add function to wrapper
+  // ToDo: add function to _serialInternal
   return 64;
 }
 
@@ -104,8 +108,7 @@ void HardwareSerial::flush()
   if (!_written) {
     return;
   }
-
-  _serialWrapper.flush();
+  _serialInternal.flushOutput();
 }
 
 size_t HardwareSerial::write(uint8_t b)
@@ -119,7 +122,7 @@ size_t HardwareSerial::write(const uint8_t *buf, size_t size)
 
   size_t bytes = 0;
   while (size > 0) {
-    int rc = _serialWrapper.write(buf + bytes, size);
+    int rc = _serialInternal.write(buf + bytes, size);
     bytes += rc;
     size -= rc;
   }
