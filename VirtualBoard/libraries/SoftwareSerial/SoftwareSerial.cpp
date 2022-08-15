@@ -25,12 +25,6 @@
   Copyright (c) 2022 Immo Wache
 */
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <inttypes.h>
-#include <Arduino.h>
-
 #include "SoftwareSerial.h"
 
 //
@@ -41,17 +35,23 @@ SoftwareSerial *SoftwareSerial::active_object = 0;
 //
 // Public Methods
 //
-SoftwareSerial::SoftwareSerial(const char *deviceName)
+SoftwareSerial::SoftwareSerial(uint8_t receivePin, uint8_t transmitPin, bool inverse_logic)
 {
-  _deviceName = deviceName;
+  (void)receivePin;
+  (void)transmitPin;
+  (void)inverse_logic;
+
+  _deviceName = VM_SWSERIAL_PORTNAME;
   _written = false;
 }
 
 void SoftwareSerial::begin(unsigned long baud)
 {
-  byte config = 0x06; // SERIAL_8N1
   _written = false;
-  _serialWrapper.begin(_deviceName, baud, config);
+
+  _serialInternal.setPort(_deviceName);
+  _serialInternal.setBaudrate(baud);
+  _serialInternal.open();
   listen();
 }
 
@@ -59,17 +59,18 @@ void SoftwareSerial::end()
 {
   // wait for transmission of outgoing data
   flush();
-  _serialWrapper.end();
+  _serialInternal.close();
 }
 
 int SoftwareSerial::available(void)
 {
-  return _serialWrapper.available();
+  return _serialInternal.available();
 }
 
 int SoftwareSerial::peek(void)
 {
-  return _serialWrapper.peek();
+  // ToDo: return _serialInternal.peek();
+  return -1;
 }
 
 int SoftwareSerial::read(void)
@@ -86,7 +87,7 @@ int SoftwareSerial::read(void)
 
 int SoftwareSerial::read(uint8_t *buf, size_t bytes)
 {
-  return _serialWrapper.read(buf, bytes);
+  return _serialInternal.read(buf, bytes);
 }
 
 int SoftwareSerial::availableForWrite(void)
@@ -104,7 +105,7 @@ void SoftwareSerial::flush()
     return;
   }
 
-  _serialWrapper.flush();
+  _serialInternal.flush();
 }
 
 size_t SoftwareSerial::write(uint8_t b)
@@ -118,7 +119,7 @@ size_t SoftwareSerial::write(const uint8_t *buf, size_t size)
 
   size_t bytes = 0;
   while (size > 0) {
-    int rc = _serialWrapper.write(buf + bytes, size);
+    int rc = _serialInternal.write(buf + bytes, size);
     bytes += rc;
     size -= rc;
   }
