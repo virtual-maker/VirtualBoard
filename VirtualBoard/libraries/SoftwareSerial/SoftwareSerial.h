@@ -27,15 +27,17 @@
 #ifndef SoftwareSerial_h
 #define SoftwareSerial_h
 
-#include <inttypes.h>
-
 #include <Stream.h>
-#include <SerialPortWrapper.h>
+#include "serial/serial.h"
+
+#if !defined(VM_SWSERIAL_PORTNAME)
+#define VM_SWSERIAL_PORTNAME "NULL"
+#endif
 
 class SoftwareSerial : public Stream
 {
   private:
-    SerialPortWrapper _serialWrapper;
+    serial::SerialClass _serialInternal;
     static SoftwareSerial *active_object;
 
   protected:
@@ -44,7 +46,7 @@ class SoftwareSerial : public Stream
     bool _written;
 
   public:
-    SoftwareSerial(const char *win32Device);
+    SoftwareSerial(uint8_t receivePin, uint8_t transmitPin, bool inverse_logic = false);
     void begin(unsigned long baud);
     void end();
     virtual int available(void);
@@ -66,13 +68,9 @@ class SoftwareSerial : public Stream
     inline size_t write(int n) {
       return write((uint8_t)n);
     }
-
     virtual size_t write(const uint8_t *buf, size_t size);
     size_t write(const char *str);
     size_t write(const char *buffer, size_t size);
-
-    //using Print::write; // pull in write(str) and write(buf, size) from Print
-
     void listen(void)
     {
       active_object = this;
@@ -81,7 +79,6 @@ class SoftwareSerial : public Stream
     {
       return this == active_object;
     }
-
     operator bool() {
       return true;
     }

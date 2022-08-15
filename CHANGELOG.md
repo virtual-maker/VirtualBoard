@@ -1,5 +1,9 @@
 # Changelog VirtualBoard
 
+### Version 1.1.1
+2022-08-15
+- Use serial class for SoftwareSerial lib
+
 ### Version 1.1.0
 2022-08-12
 - Add native C++ serial class
