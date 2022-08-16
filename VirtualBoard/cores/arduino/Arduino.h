@@ -40,9 +40,6 @@
 
 #include "utils/stdlib_noniso.h"
 
-#include <ProcessSynchronizationWrapper.h>
-#include <TimingWrapper.h>
-
 #include "interrupt.h"
 
 // Unknown macro for the Visual C++ compiler
@@ -80,22 +77,18 @@ using std::abs;
 typedef uint8_t byte;
 typedef uint8_t boolean;
 
+uint32_t _startupMicros = 0;
+uint32_t _startupMillis = 0;
+
 void yield(void);
 unsigned long millis(void);
 unsigned long micros(void);
-void _delay_milliseconds(unsigned int millis);
-void _delay_microseconds(unsigned int micro);
 
 // WMath prototypes
 long random(long howbig);
 long random(long howsmall, long howbig);
 void randomSeed(unsigned long seed);
 long map(long, long, long, long, long);
-
-extern TimingWrapper timingWrapper;
-#if defined(MY_PROCESS_SYNCHRONIZATION)
-extern ProcessSynchronizationWrapper processSynchronizationWrapper;
-#endif
 
 extern void _yield(void);
 extern void setup(void);
@@ -112,6 +105,5 @@ void analogWrite(uint8_t pin, uint16_t value);
 
 void delay(unsigned int millisec);
 void delayMicroseconds(unsigned int micro);
-void _delay_milliseconds_and_proc_sync(unsigned int millis);
 
 #endif

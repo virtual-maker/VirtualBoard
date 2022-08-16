@@ -69,14 +69,13 @@ BOOL WINAPI CtrlHandler(unsigned long fdwCtrlType)
 
 void _yield(void)
 {
-#if !defined(VM_USE_HARDWARE)
-  // Slow down CPU usage if the main loop is short
-  Sleep(10);
-#endif
 }
 
 int main(int argc, char *argv[])
 {
+  _startupMicros = micros();
+  _startupMillis = millis();
+
   if (!SetConsoleCtrlHandler(CtrlHandler, TRUE)) {
     printf("\nERROR: Could not set control handler");
     return 1;

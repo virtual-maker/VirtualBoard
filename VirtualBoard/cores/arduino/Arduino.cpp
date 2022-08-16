@@ -34,13 +34,9 @@
 #include <consoleapi.h>
 #include <stdio.h>
 #include <synchapi.h>
+#include <chrono>
 
 #include "GPIO.h"
-
-TimingWrapper timingWrapper;
-#if defined(MY_PROCESS_SYNCHRONIZATION)
-ProcessSynchronizationWrapper processSynchronizationWrapper;
-#endif
 
 void pinMode(uint8_t pin, uint8_t direction)
 {
@@ -74,43 +70,23 @@ void yield(void)
 
 unsigned long millis(void)
 {
-#if defined(MY_PROCESS_SYNCHRONIZATION)
-  return processSynchronizationWrapper.millis();
-#else
-  return timingWrapper.millis();
-#endif
+  return (uint32_t)GetTickCount64() - _startupMillis;
 }
 
 unsigned long micros()
 {
-  return timingWrapper.micros();
+  uint64_t us = std::chrono::duration_cast<std::chrono::microseconds>(
+    std::chrono::high_resolution_clock::now().time_since_epoch())
+    .count();
+  return us - _startupMicros;
 }
 
 void delay(unsigned int millisec)
 {
-#if defined(VM_USE_HARDWARE) && !defined(VM_CALL_YIELD_WHILE_DELAY)
-  // see:
-  // https://docs.microsoft.com/de-de/windows/win32/api/synchapi/nf-synchapi-sleep
-  //
-  Sleep(millisec);
-#else
   unsigned long startMillis = millis();
   do {
     _yield();
   } while (millis() - startMillis < millisec);
-#endif
-}
-
-void _delay_milliseconds_and_proc_sync(unsigned int millis)
-{
-#if defined(MY_PROCESS_SYNCHRONIZATION)
-  processSynchronizationWrapper.wait(millis);
-#else
-#pragma warning( push )
-#pragma warning( disable : 4996)
-  _sleep(millis);
-#pragma warning( pop )
-#endif
 }
 
 void delayMicroseconds(unsigned int micro)
