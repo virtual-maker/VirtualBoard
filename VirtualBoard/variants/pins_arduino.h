@@ -7,7 +7,7 @@
   Optionally, real binary and analogue I/O pins as well as I2C and SPI interfaces
   can be controlled via an IO-Warrior device.
   https://github.com/virtual-maker/VirtualBoard
-  
+
   Created by Immo Wache <virtual.mkr@gmail.com>
   Copyright (c) 2022 Immo Wache. All right reserved.
 
@@ -279,6 +279,89 @@ static const uint8_t TX = 1;
 // TODO: is this correct?
 #define MAX_SERVOS 24
 //-------------------------------------------------------------------------------
+
+// ESP32-C3 LOLIN C3 mini
+// note: boot mode GPIO 9 can be used as output
+#elif defined(CONFIG_IDF_TARGET_ESP32C3)
+
+#define EXTERNAL_NUM_INTERRUPTS 22
+#define NUM_DIGITAL_PINS        22
+#define NUM_ANALOG_INPUTS       6
+
+#define analogInputToDigitalPin(p)  (((p) < NUM_ANALOG_INPUTS) ? (analogChannelToDigitalPin(p)) : -1)
+#define digitalPinToInterrupt(p)    (((p) < NUM_DIGITAL_PINS) ? (p) : -1)
+#define digitalPinHasPWM(p)         (p < EXTERNAL_NUM_INTERRUPTS)
+
+static const uint8_t LED_BUILTIN = 7;
+#define BUILTIN_LED  LED_BUILTIN // backward compatibility
+
+static const uint8_t TX = 21;
+static const uint8_t RX = 20;
+
+static const uint8_t SDA = 8;
+static const uint8_t SCL = 10;
+
+static const uint8_t SS = 5;
+static const uint8_t MOSI = 4;
+static const uint8_t MISO = 3;
+static const uint8_t SCK = 2;
+
+static const uint8_t A0 = 0;
+static const uint8_t A1 = 1;
+static const uint8_t A2 = 2;
+static const uint8_t A3 = 3;
+static const uint8_t A4 = 4;
+static const uint8_t A5 = 5;
+//-------------------------------------------------------------------------------
+
+
+// ESP32-S2 LOLIN S2 mini
+// note: boot mode GPIO 0 can be used as output
+#elif defined(CONFIG_IDF_TARGET_ESP32S2)
+#define EXTERNAL_NUM_INTERRUPTS 46
+#define NUM_DIGITAL_PINS        48
+#define NUM_ANALOG_INPUTS       20
+
+#define analogInputToDigitalPin(p)  (((p)<20)?(analogChannelToDigitalPin(p)):-1)
+#define digitalPinToInterrupt(p)    (((p)<48)?(p):-1)
+#define digitalPinHasPWM(p)         (p < 46)
+
+static const uint8_t LED_BUILTIN = 15;
+#define BUILTIN_LED  LED_BUILTIN // backward compatibility
+
+static const uint8_t TX = 39;
+static const uint8_t RX = 37;
+
+static const uint8_t SDA = 33;
+static const uint8_t SCL = 35;
+
+static const uint8_t SS = 12;
+static const uint8_t MOSI = 11;
+static const uint8_t MISO = 9;
+static const uint8_t SCK = 7;
+
+static const uint8_t A0 = 1;
+static const uint8_t A1 = 2;
+static const uint8_t A2 = 3;
+static const uint8_t A3 = 4;
+static const uint8_t A4 = 5;
+static const uint8_t A5 = 6;
+static const uint8_t A6 = 7;
+static const uint8_t A7 = 8;
+static const uint8_t A8 = 9;
+static const uint8_t A9 = 10;
+static const uint8_t A10 = 11;
+static const uint8_t A11 = 12;
+static const uint8_t A12 = 13;
+static const uint8_t A13 = 14;
+static const uint8_t A14 = 15;
+static const uint8_t A15 = 16;
+static const uint8_t A16 = 17;
+static const uint8_t A17 = 18;
+static const uint8_t A18 = 19;
+static const uint8_t A19 = 20;
+//-------------------------------------------------------------------------------
+
 
 // Arduino Zero
 // Note this will work with an Arduino Zero Pro, but not with an Arduino M0 Pro
