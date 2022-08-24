@@ -167,8 +167,10 @@ class SPIClass
      * @brief Start SPI transaction.
      *
      * @param settings for SPI.
+     * @param csPinOptions Control options for slave select pin
+     * @param csPin SPI slave/chip select pin number
      */
-    void beginTransaction(SPISettings settings);
+    void beginTransaction(SPISettings settings, uint8_t csPinOptions = 0x01, uint8_t csPin = VB_FIRMATA_SPI_CSN);
     /**
      * @brief End SPI transaction.
      */
@@ -190,7 +192,11 @@ class SPIClass
     void init();
 #if defined(VB_FIRMATA_PORT)
     CFI_SPIFeature* _spi = NULL;
-    bool _isFirstTransaction = false;
+    uint32_t _lastClock = 0;
+    uint8_t _lastBitOrder = 0;
+    uint8_t _lastDataMode = 0;
+    uint8_t _lastCsPinOptions = 0;
+    uint8_t _lastCsPin = 255;
 #endif
 };
 

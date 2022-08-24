@@ -7,7 +7,7 @@
   Optionally, real binary and analogue I/O pins as well as I2C and SPI interfaces
   can be controlled via an IO-Warrior device.
   https://github.com/virtual-maker/VirtualBoard
-  
+
   Created by Immo Wache <virtual.mkr@gmail.com>
   Copyright (c) 2022 Immo Wache. All right reserved.
 
@@ -121,10 +121,10 @@ static const uint8_t SCL = PIN_WIRE_SCL;
 #define PIN_SPI_MISO  (14)
 #define PIN_SPI_SCK   (15)
 
-static const uint8_t SS   = PIN_SPI_SS;
+static const uint8_t SS = PIN_SPI_SS;
 static const uint8_t MOSI = PIN_SPI_MOSI;
 static const uint8_t MISO = PIN_SPI_MISO;
-static const uint8_t SCK  = PIN_SPI_SCK;
+static const uint8_t SCK = PIN_SPI_SCK;
 
 // Mapping of analog pins as digital I/O
 // A6-A11 share with digital pins
@@ -396,13 +396,13 @@ static const uint8_t A19 = 20;
 #define PIN_A4 (19u)
 #define PIN_A5 (20u)
 #define PIN_A6 (21u)
-static const uint8_t A0  = PIN_A0;
-static const uint8_t A1  = PIN_A1;
-static const uint8_t A2  = PIN_A2;
-static const uint8_t A3  = PIN_A3;
-static const uint8_t A4  = PIN_A4;
-static const uint8_t A5  = PIN_A5;
-static const uint8_t A6  = PIN_A6;
+static const uint8_t A0 = PIN_A0;
+static const uint8_t A1 = PIN_A1;
+static const uint8_t A2 = PIN_A2;
+static const uint8_t A3 = PIN_A3;
+static const uint8_t A4 = PIN_A4;
+static const uint8_t A5 = PIN_A5;
+static const uint8_t A6 = PIN_A6;
 #define ADC_RESOLUTION 12
 
 // SPI Interfaces
@@ -412,10 +412,10 @@ static const uint8_t A6  = PIN_A6;
 #define PIN_SPI_SCK   (9u)
 #define PIN_SPI_SS    (4u)
 
-static const uint8_t SS   = PIN_SPI_SS;   // SPI Slave SS not used. Set here only for reference.
+static const uint8_t SS = PIN_SPI_SS;   // SPI Slave SS not used. Set here only for reference.
 static const uint8_t MOSI = PIN_SPI_MOSI;
 static const uint8_t MISO = PIN_SPI_MISO;
-static const uint8_t SCK  = PIN_SPI_SCK;
+static const uint8_t SCK = PIN_SPI_SCK;
 
 // Wire Interfaces
 // ---------------
@@ -453,13 +453,13 @@ static const uint8_t SCL = PIN_WIRE_SCL;
 #define PIN_A6   (21u)
 #define PIN_DAC0 (15u)
 
-static const uint8_t A0   = PIN_A0;
-static const uint8_t A1   = PIN_A1;
-static const uint8_t A2   = PIN_A2;
-static const uint8_t A3   = PIN_A3;
-static const uint8_t A4   = PIN_A4;
-static const uint8_t A5   = PIN_A5;
-static const uint8_t A6   = PIN_A6;
+static const uint8_t A0 = PIN_A0;
+static const uint8_t A1 = PIN_A1;
+static const uint8_t A2 = PIN_A2;
+static const uint8_t A3 = PIN_A3;
+static const uint8_t A4 = PIN_A4;
+static const uint8_t A5 = PIN_A5;
+static const uint8_t A6 = PIN_A6;
 static const uint8_t DAC0 = PIN_DAC0;
 #define ADC_RESOLUTION 12
 
@@ -469,10 +469,10 @@ static const uint8_t DAC0 = PIN_DAC0;
 #define PIN_SPI_MOSI  (8u)
 #define PIN_SPI_SCK   (9u)
 #define PIN_SPI_SS    (24u)
-static const uint8_t SS   = PIN_SPI_SS;   // SPI Slave SS not used. Set here only for reference.
+static const uint8_t SS = PIN_SPI_SS;   // SPI Slave SS not used. Set here only for reference.
 static const uint8_t MOSI = PIN_SPI_MOSI;
 static const uint8_t MISO = PIN_SPI_MISO;
-static const uint8_t SCK  = PIN_SPI_SCK;
+static const uint8_t SCK = PIN_SPI_SCK;
 
 // Wire Interfaces
 // ---------------
@@ -546,10 +546,16 @@ static const uint8_t SCL = PIN_WIRE_SCL;
 #define PIN_SPI_MOSI            PA7
 #define PIN_SPI_MISO            PA6
 #define PIN_SPI_SCK             PA5
+static const uint8_t SS = PIN_SPI_SS;   // SPI Slave SS not used. Set here only for reference.
+static const uint8_t MOSI = PIN_SPI_MOSI;
+static const uint8_t MISO = PIN_SPI_MISO;
+static const uint8_t SCK = PIN_SPI_SCK;
 
 // I2C Definitions
 #define PIN_WIRE_SDA            PB7
 #define PIN_WIRE_SCL            PB6
+static const uint8_t SDA = PIN_WIRE_SDA;
+static const uint8_t SCL = PIN_WIRE_SCL;
 
 // Timer Definitions
 // Do not use timer used by PWM pins when possible. See PinMap_PWM.

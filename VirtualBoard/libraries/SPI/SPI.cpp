@@ -39,7 +39,7 @@ SPIClass::SPIClass()
 void SPIClass::begin(int busNo)
 {
 #if defined(VB_FIRMATA_PORT)
-  _isFirstTransaction = true;
+  _lastCsPin = 255;
   byte channel = 0;
   _spi->begin(channel);
 #elif defined(VM_DISABLE_SPI)
@@ -109,18 +109,22 @@ void SPIClass::transfer(void* buf, uint32_t len)
   transfer(buf, buf, len);
 }
 
-void SPIClass::beginTransaction(SPISettings settings)
+void SPIClass::beginTransaction(SPISettings settings, uint8_t csPinOptions, uint8_t csPin)
 {
 #if defined(VB_FIRMATA_PORT)
-  if (!_isFirstTransaction) {
+  if (csPin == _lastCsPin && csPinOptions == _lastCsPinOptions && settings.clock == _lastClock &&
+	  settings.border == _lastBitOrder && settings.dmode == _lastDataMode) {
     return;
   }
-  byte deviceId = 0;
-  byte channel = 0;
-  byte csPinOptions = 1; // 0x01;
-  byte csPin = VB_FIRMATA_SPI_CSN;
+  uint8_t deviceId = 0; // device ID and channel are not used, there is only one SPI port available
+  uint8_t channel = 0;
+
+  _lastClock = settings.clock;
+  _lastBitOrder = settings.border;
+  _lastDataMode = settings.dmode;
+  _lastCsPinOptions = csPinOptions;
+  _lastCsPin = csPin;
   _spi->deviceConfig(deviceId, channel, settings.dmode, settings.border, settings.clock, csPinOptions, csPin);
-  _isFirstTransaction = false;
 #elif !defined(VM_DISABLE_SPI)
   spiWrapper.beginTransaction(settings.clock, settings.border, settings.dmode);
 #endif

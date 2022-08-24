@@ -79,7 +79,7 @@ int HardwareSerial::peek(void)
 
 int HardwareSerial::read(void)
 {
-  uint8_t b;
+  uint8_t b = 0;
   if (read((unsigned char*)&b, 1) >= 0) {
     // read worked
     return b;
