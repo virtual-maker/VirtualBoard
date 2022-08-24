@@ -33,6 +33,14 @@
 
 bool _repeatMainLoop = true;
 
+#if defined(VB_FIRMATA_PORT)
+HardwareSerial _vbHardwareSerial(VB_FIRMATA_PORT);
+#endif
+
+#if !defined(VB_FIRMATA_BAUD_RATE)
+#define VB_FIRMATA_BAUD_RATE (115200)
+#endif
+
 // see:
 // https://docs.microsoft.com/en-us/windows/console/registering-a-control-handler-function
 //
@@ -69,25 +77,41 @@ BOOL WINAPI CtrlHandler(unsigned long fdwCtrlType)
 
 void _yield(void)
 {
+#if defined(VB_FIRMATA_PORT)
+  GPIO.ClientFirmata.update();
+#elif defined(VM_USE_HARDWARE)
+  // Do nothing
+#else
+  // Do nothing
+#endif
 }
 
 int main(int argc, char *argv[])
 {
-  _startupMicros = micros();
-  _startupMillis = millis();
+    _startupMicros = micros();
+    _startupMillis = millis();
 
-  if (!SetConsoleCtrlHandler(CtrlHandler, TRUE)) {
+    if (!SetConsoleCtrlHandler(CtrlHandler, TRUE)) {
     printf("\nERROR: Could not set control handler");
     return 1;
   }
 
-#if defined(VM_USE_HARDWARE)
+#if defined(VB_FIRMATA_PORT)
+  // Start Firmata client with serial stream
+  _vbHardwareSerial.begin(VB_FIRMATA_BAUD_RATE);
+  _vbHardwareSerial.setTimeout(0);
+#if defined(ARDUINO_ARCH_AVR)
+  // Wait for AVR reboot time while serial connect
+  Sleep(2000);
+#endif
+  GPIO.ClientFirmata.begin(_vbHardwareSerial);
+#elif defined(VM_USE_HARDWARE)
 #if defined(VM_HW_SERIAL_NUMBER)
   gpioWrapper.begin(VM_HW_SERIAL_NUMBER);
 #else
   gpioWrapper.begin(NULL);
 #endif
-#endif
+#endif // defined(VB_FIRMATA_PORT)
 
   setup(); // Call sketch setup
 

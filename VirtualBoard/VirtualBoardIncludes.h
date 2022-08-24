@@ -43,6 +43,7 @@
 #include "cores/arduino/SoftEeprom.cpp"
 #include "cores/arduino/SerialSimulator.cpp"
 #include "cores/arduino/Interrupt.cpp"
+#include "cores/arduino/clientfirmata/CFI_ClientFirmata.h"
 #include "cores/arduino/GPIO.cpp"
 #include "cores/arduino/Arduino.cpp"
 #include "cores/arduino/WString.cpp"
@@ -54,5 +55,6 @@
 #include "cores/arduino/serial/serial.cc"
 #include "cores/arduino/serial/win.cc"
 #include "cores/arduino/StreamString.cpp"
+#include "cores/arduino/clientfirmata/CFI_ClientFirmataIncludes.h"
 
 #endif

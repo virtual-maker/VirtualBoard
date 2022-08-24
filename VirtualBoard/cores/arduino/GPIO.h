@@ -40,7 +40,7 @@
 class GPIOClass
 {
 
-  public:
+public:
     /**
      * @brief GPIOClass constructor.
      */
@@ -109,6 +109,19 @@ class GPIOClass
      *
      */
     GPIOClass& operator=(const GPIOClass& other);
+
+#if defined(VB_FIRMATA_PORT)
+    CFI_ClientFirmata ClientFirmata;
+#endif
+
+  private:
+#if defined(VB_FIRMATA_PORT)
+    CFI_DigitalInputFeature* _digitalInput = NULL;
+    CFI_DigitalOutputFeature* _digitalOutput = NULL;
+    CFI_AnalogInputFeature* _analogInput = NULL;
+    CFI_AnalogOutputFeature* _analogOutput = NULL;
+#endif
+
 };
 
 extern GPIOClass GPIO;

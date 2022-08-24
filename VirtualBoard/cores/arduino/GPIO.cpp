@@ -31,6 +31,12 @@ GPIOClass GPIO = GPIOClass();
 
 GPIOClass::GPIOClass()
 {
+#if defined(VB_FIRMATA_PORT)
+	_digitalInput = new CFI_DigitalInputFeature(ClientFirmata);
+	_digitalOutput = new CFI_DigitalOutputFeature(ClientFirmata);
+	_analogInput = new CFI_AnalogInputFeature(ClientFirmata);
+	_analogOutput = new CFI_AnalogOutputFeature(ClientFirmata);
+#endif
 }
 
 GPIOClass::GPIOClass(const GPIOClass& other)
@@ -43,28 +49,46 @@ GPIOClass::~GPIOClass()
 
 void GPIOClass::_pinMode(uint8_t pin, uint8_t mode)
 {
-#if defined(VM_USE_HARDWARE)
+#if defined(VB_FIRMATA_PORT)
+  switch (mode) {
+  case INPUT:
+      _digitalInput->setPinMode(pin, CFI_PIN_MODE_INPUT);
+  case INPUT_PULLUP:
+      _digitalInput->setPinMode(pin, CFI_PIN_MODE_PULLUP);
+      break;
+  case OUTPUT:
+      _digitalOutput->setPinMode(pin, CFI_PIN_MODE_OUTPUT);
+  default:
+      break;
+  }
+#elif defined(VM_USE_HARDWARE)
   gpioWrapper.pinMode(pin, mode);
 #endif
 }
 
 void GPIOClass::_digitalWrite(uint8_t pin, uint8_t value)
 {
-#if defined(VM_USE_HARDWARE)
+#if defined(VB_FIRMATA_PORT)
+  _digitalOutput->setPinValue(pin, value != 0);
+#elif defined(VM_USE_HARDWARE)
   gpioWrapper.digitalWrite(pin, value != 0);
 #endif
 }
 
 void GPIOClass::_digitalWritePort(uint8_t port, uint8_t value)
 {
-#if defined(VM_USE_HARDWARE)
+#if defined(VB_FIRMATA_PORT)
+  _digitalOutput->digitalWritePort(port, value);
+#elif defined(VM_USE_HARDWARE)
   gpioWrapper.digitalWritePort(port, value);
 #endif
 }
 
 uint8_t GPIOClass::_digitalRead(uint8_t pin)
 {
-#if defined(VM_USE_HARDWARE)
+#if defined(VB_FIRMATA_PORT)
+  return _digitalInput->getPinValue(pin);
+#elif defined(VM_USE_HARDWARE)
   return gpioWrapper.digitalRead(pin);
 #else
   return 0;
@@ -73,7 +97,10 @@ uint8_t GPIOClass::_digitalRead(uint8_t pin)
 
 uint16_t GPIOClass::_analogRead(uint8_t pin)
 {
-#if defined(VM_USE_HARDWARE)
+#if defined(VB_FIRMATA_PORT)
+  uint8_t firmataPin = pin - A0;
+  return _analogInput->getPinValue(firmataPin);
+#elif defined(VM_USE_HARDWARE)
   uint8_t firmataPin = pin - A0;
   return gpioWrapper.analogRead(firmataPin);
 #else
@@ -83,7 +110,9 @@ uint16_t GPIOClass::_analogRead(uint8_t pin)
 
 void GPIOClass::_analogWrite(uint8_t pin, uint16_t value)
 {
-#if defined(VM_USE_HARDWARE)
+#if defined(VB_FIRMATA_PORT)
+  _analogOutput->setPinValue(pin, value);
+#elif defined(VM_USE_HARDWARE)
   gpioWrapper.analogWrite(pin, value);
 #endif
 }

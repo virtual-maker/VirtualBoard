@@ -28,8 +28,8 @@
 
 #define SPI_HAS_TRANSACTION
 
-#define MSBFIRST 0
-#define LSBFIRST SPI_LSB_FIRST
+#define MSBFIRST 1
+#define LSBFIRST 0
 
 #define SPI_CLOCK_BASE 16000000		// 16Mhz
 
@@ -188,6 +188,10 @@ class SPIClass
 
   private:
     void init();
+#if defined(VB_FIRMATA_PORT)
+    CFI_SPIFeature* _spi = NULL;
+    bool _isFirstTransaction = false;
+#endif
 };
 
 extern SPIClass SPI;
