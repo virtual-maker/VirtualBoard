@@ -68,17 +68,22 @@ void yield(void)
   _yield();
 }
 
+uint64_t _micros64()
+{
+  return std::chrono::duration_cast<std::chrono::microseconds>(
+    std::chrono::high_resolution_clock::now().time_since_epoch())
+    .count();
+}
+
 unsigned long millis(void)
 {
-  return (uint32_t)GetTickCount64() - _startupMillis;
+  uint64_t ms = _micros64() / 1000;
+  return (uint32_t)ms - _startupMillis;
 }
 
 unsigned long micros()
 {
-  uint64_t us = std::chrono::duration_cast<std::chrono::microseconds>(
-    std::chrono::high_resolution_clock::now().time_since_epoch())
-    .count();
-  return us - _startupMicros;
+  return (uint32_t)_micros64() - _startupMicros;
 }
 
 void delay(unsigned int millisec)
@@ -91,8 +96,11 @@ void delay(unsigned int millisec)
 
 void delayMicroseconds(unsigned int micro)
 {
-  // This seems not real possible in Windows
-  delay(micro / 1000);
+  // This does not really seem possible under Windows
+  uint32_t ms = micro / 1000;
+  if (ms > 0) {
+    delay(ms);
+  }
 }
 
 void randomSeed(unsigned long seed)
