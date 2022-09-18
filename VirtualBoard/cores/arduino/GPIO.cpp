@@ -117,11 +117,6 @@ void GPIOClass::_analogWrite(uint8_t pin, uint16_t value)
 #endif
 }
 
-uint8_t GPIOClass::_digitalPinToInterrupt(uint8_t pin)
-{
-  return pin;
-}
-
 GPIOClass& GPIOClass::operator=(const GPIOClass& other)
 {
   if (this != &other) {

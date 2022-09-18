@@ -98,13 +98,6 @@ public:
     */
     void _analogWrite(uint8_t pin, uint16_t value);
     /**
-     * @brief Arduino compatibility function, returns the same given pin.
-     *
-     * @param pin The number of the pin.
-     * @return The same parameter pin number.
-     */
-    uint8_t _digitalPinToInterrupt(uint8_t pin);
-    /**
      * @brief Overloaded assign operator.
      *
      */

@@ -100,7 +100,6 @@ uint8_t digitalRead(uint8_t pin);
 uint16_t analogRead(uint8_t pin);
 void analogWrite(uint8_t pin, uint16_t value);
 
-#define digitalPinToInterrupt(pin) GPIO._digitalPinToInterrupt(pin)
 #define NOT_AN_INTERRUPT -1
 
 void delay(unsigned int millisec);
