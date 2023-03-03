@@ -1,0 +1,3 @@
+[submodule "VirtualBoard"]
+	path = VirtualBoard
+	url = https://github.com/virtual-maker/VirtualBoardCore.git
