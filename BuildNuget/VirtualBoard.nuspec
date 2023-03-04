@@ -17,6 +17,10 @@
     <file src="build\**" target="build" />
     <file src="..\lib\**" target="build\native\libs" />
     <file src="..\inc\**" target="build\native\interface" />
-    <file src="..\VirtualBoard\**" target="build\native\source" />
+    <file src="..\VirtualBoard\cores\**" target="build\native\source\cores" />
+    <file src="..\VirtualBoard\libraries\**" target="build\native\source\libraries" />
+    <file src="..\VirtualBoard\variants\**" target="build\native\source\variants" />
+    <file src="..\VirtualBoard\VirtualBoard.h" target="build\native\source" />
+    <file src="..\VirtualBoard\VirtualBoardIncludes.h" target="build\native\source" />
   </files>
 </package>
